@@ -10,7 +10,7 @@
   },
   "author": "Al Azif",
   "url": "",
-  "redirect": true,
+  "redirect": false,
   "reload": false,
   "offline": true
 }
