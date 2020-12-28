@@ -1,4 +1,4 @@
-#include "kernel_utils.h"
+#include "ps4.h"
 
 int rename_rifs(const char *license_path) {
   DIR *dir;
@@ -42,12 +42,12 @@ int rename_rifs(const char *license_path) {
 }
 
 int _main(struct thread *td) {
+  UNUSED(td);
+
   initKernel();
   initLibc();
-  initPthread();
 
-  uint64_t fw_version = get_fw_version();
-  jailbreak(fw_version);
+  jailbreak();
 
   initSysUtil();
 
