@@ -10,16 +10,15 @@ int rename_rifs(const char *license_path) {
     char new_filename[255];
     while ((dp = readdir(dir)) != NULL) {
       struct stat info;
-      sprintf(original_filename , "%s/%s", license_path, dp->d_name);
+      sprintf(original_filename, "%s/%s", license_path, dp->d_name);
 
-      if(stat(original_filename, &info) == -1) {
+      if (stat(original_filename, &info) == -1) {
         // Failed to stat object... skip it
         continue;
       }
 
       // Rename if it's a file or symbolic link and starts with "fake"
-      if ((S_ISREG(info.st_mode) || S_ISLNK(info.st_mode))
-        && strncmp("fake", dp->d_name, strlen("fake")) == 0) {
+      if ((S_ISREG(info.st_mode) || S_ISLNK(info.st_mode)) && strncmp("fake", dp->d_name, strlen("fake")) == 0) {
         char *modified_filename;
 
         modified_filename = malloc(strlen(dp->d_name));
