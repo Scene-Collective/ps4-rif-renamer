@@ -1,6 +1,6 @@
 RIF Renamer
 ===
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4a6fd2af2d4c400c9e8bca3ca34a33c5)](https://www.codacy.com/gh/Scene-Collective/ps4-rif-renamer/dashboard)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/)](https://www.codacy.com/gh/Scene-Collective/ps4-rif-renamer/dashboard)
 
 ## Synopsis
 Renames 'fake' RIFs to 'free' RIFs for better HEN compatibility. Use this if your PKGs only work with Mira+HEN.
