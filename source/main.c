@@ -2,10 +2,10 @@
 
 int rename_rifs(const char *license_path) {
   DIR *dir;
-  struct dirent *dp;
   dir = opendir(license_path);
 
   if (dir) {
+    struct dirent *dp;
     char original_filename[255];
     char new_filename[255];
     while ((dp = readdir(dir)) != NULL) {
@@ -18,7 +18,7 @@ int rename_rifs(const char *license_path) {
       }
 
       // Rename if it's a file or symbolic link and starts with "fake"
-      if ((S_ISREG(info.st_mode) || S_ISLNK(info.st_mode)) && strncmp("fake", dp->d_name, strlen("fake")) == 0) {
+      if ((S_ISREG(info.st_mode) || S_ISLNK(info.st_mode)) && strncmp("fake", dp->d_name, 4) == 0) {
         char *modified_filename;
 
         modified_filename = malloc(strlen(dp->d_name) + 1);
