@@ -21,12 +21,12 @@ int rename_rifs(const char *license_path) {
       if ((S_ISREG(info.st_mode) || S_ISLNK(info.st_mode)) && strncmp("fake", dp->d_name, strlen("fake")) == 0) {
         char *modified_filename;
 
-        modified_filename = malloc(strlen(dp->d_name));
+        modified_filename = malloc(strlen(dp->d_name) + 1);
         strcpy(modified_filename, dp->d_name);
 
-        modified_filename[1] = 114; // r
-        modified_filename[2] = 101; // e
-        modified_filename[3] = 101; // e
+        modified_filename[1] = 0x72; // r
+        modified_filename[2] = 0x65; // e
+        modified_filename[3] = 0x65; // e
 
         sprintf(new_filename, "%s/%s", license_path, modified_filename);
         rename(original_filename, new_filename);
@@ -35,9 +35,9 @@ int rename_rifs(const char *license_path) {
     }
     closedir(dir);
   } else {
-    return 0;
+    return -1;
   }
-  return 1;
+  return 0;
 }
 
 int _main(struct thread *td) {
