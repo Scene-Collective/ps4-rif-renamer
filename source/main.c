@@ -50,6 +50,8 @@ int _main(struct thread *td) {
 
   initSysUtil();
 
+  printf_notification("Running RIF Renamer");
+
   rename_rifs("/system_data/priv/license");
   rename_rifs("/user/license");
 
