@@ -8,7 +8,6 @@ int rename_rifs(const char *license_path) {
     struct dirent *dp;
     while ((dp = readdir(dir)) != NULL) {
       char original_filename[PATH_MAX] = {0};
-      char new_filename[PATH_MAX] = {0};
 
       struct stat info;
       snprintf_s(original_filename, sizeof(original_filename), "%s/%s", license_path, dp->d_name);
@@ -21,6 +20,7 @@ int rename_rifs(const char *license_path) {
       // Rename if it's a file or symbolic link and starts with "fake"
       if ((S_ISREG(info.st_mode) || S_ISLNK(info.st_mode)) && strncmp("fake", dp->d_name, 4) == 0) {
         char modified_filename[PATH_MAX] = {0};
+        char new_filename[PATH_MAX] = {0};
         snprintf_s(modified_filename, sizeof(modified_filename), "%s", dp->d_name);
         memmove_s(&modified_filename, sizeof(modified_filename), "free", 4);
         snprintf_s(new_filename, sizeof(new_filename), "%s/%s", license_path, modified_filename);
