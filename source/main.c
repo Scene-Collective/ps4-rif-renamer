@@ -1,3 +1,7 @@
+//#define DEBUG_SOCKET
+#define DEBUG_IP "192.168.2.2"
+#define DEBUG_PORT 9023
+
 #include "ps4.h"
 
 int rename_rifs(const char *license_path) {
@@ -40,6 +44,11 @@ int _main(struct thread *td) {
   initKernel();
   initLibc();
 
+#ifdef DEBUG_SOCKET
+  initNetwork();
+  DEBUG_SOCK = SckConnect(DEBUG_IP, DEBUG_PORT);
+#endif
+
   jailbreak();
 
   initSysUtil();
@@ -50,6 +59,11 @@ int _main(struct thread *td) {
   rename_rifs("/user/license");
 
   printf_notification("RIFs renamed!");
+
+#ifdef DEBUG_SOCKET
+  printf_socket("\nClosing socket...\n\n");
+  SckClose(DEBUG_SOCK);
+#endif
 
   return 0;
 }
